@@ -18,4 +18,4 @@ We require you to have postgresql, maven, jdk, and npm/node.js installed.
 6. Please be advised two user accounts have been pre-made for your use, Account one has Admin privileges which emulates a council member and you can sign in with the credentials: Username = professorA and Password = AdminProfessor.2026 . Another account, Account two has been set up with only standard priveleges emulating a community member and you can sign in to this account with the credentials: Username = professorC and Password = CommunityProfessor.2026 . You are also able to explore some regions of our application signed out.
 
 # There is also a deployed version of this exact git repository on:
-
+https://communityfixuob.netlify.app/
