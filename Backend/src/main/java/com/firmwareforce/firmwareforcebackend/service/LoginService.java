@@ -10,6 +10,7 @@ import com.firmwareforce.firmwareforcebackend.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import com.firmwareforce.firmwareforcebackend.user;
+import org.springframework.beans.factory.annotation.Value;
 
 @Service
 public class LoginService {
@@ -19,6 +20,9 @@ public class LoginService {
 
     @Autowired
     private AuthService authService;
+
+    @Value("${app.jwt.secret}")
+    private String jwtSecret;
 
     public HashMap<String, String> authenticate(String username, String rawPassword) 
     {
@@ -30,8 +34,7 @@ public class LoginService {
 
             if (passwordMatch)
             {
-                String secret = "12ehewhfshdgpishipghewipheiph4wip5803y08hihoihougduoaguuHPHOPHIPHPI";
-                SecretKey key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+                SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
 
                 String token = Jwts.builder()
                 .setSubject(username)
@@ -57,4 +60,3 @@ public class LoginService {
         return null;
     }
 }
-
