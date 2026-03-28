@@ -19,4 +19,3 @@ We require you to have postgresql, maven, jdk, and npm/node.js installed.
 
 # There is also a deployed version of this exact git repository on:
 
-http://firmwareforce.elliothardy.com
