@@ -2,6 +2,7 @@ package com.firmwareforce.firmwareforcebackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.firmwareforce.firmwareforcebackend.DTO.SignupRequest;
 import com.firmwareforce.firmwareforcebackend.user;
 import com.firmwareforce.firmwareforcebackend.manager.UserTableManager;
 import com.firmwareforce.firmwareforcebackend.service.SignupService;
@@ -42,10 +43,18 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
     
-    @PostMapping("/signup/{password}")
-    public ResponseEntity<?> signup(@RequestBody user newUser, @PathVariable String password) {
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest) {
         try {
-            String hashedPassword = authService.hashPassword(password);
+            user newUser = new user();
+            newUser.setUsername(signupRequest.getUsername());
+            newUser.setEmailAddress(signupRequest.getEmailAddress());
+            newUser.setPhoneNumber(signupRequest.getPhoneNumber());
+            newUser.setDateOfBirth(signupRequest.getDateOfBirth());
+            newUser.setAddress(signupRequest.getAddress());
+            newUser.setUserRole(signupRequest.getUserRole());
+
+            String hashedPassword = authService.hashPassword(signupRequest.getPassword());
             newUser.setPasswordHash(hashedPassword);
             user createdUser = signupService.registerNewUser(newUser);
             return ResponseEntity.ok(createdUser);

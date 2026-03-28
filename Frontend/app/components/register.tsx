@@ -159,11 +159,12 @@ export default function Register() {
         phoneNumber: textPhoneNumber,
         dateOfBirth: textDOB,
         address: textAddress,
-        userRole: "COMMUNITY"
+        userRole: "COMMUNITY",
+        password: textPassword1
         };
 
         try {
-        const response = await fetch(apiUrl(`/api/users/signup/${textPassword1}`), {
+        const response = await fetch(apiUrl('/api/users/signup'), {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
